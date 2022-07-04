@@ -13,11 +13,8 @@ import { RestaurantInfo } from "../components/restaurant-info";
 import styled from "styled-components";
 import { Spacer } from "../../../main-components/spacer";
 import spacing, { space } from "../../../infrastucture/theme/spacing";
-
-const SafeArea = styled(SafeAreaView)`
-  flex: 1;
-  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
-`;
+import { SafeArea } from "../../../main-components/safe-area";
+import { Ionicons } from "@expo/vector-icons";
 
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
@@ -44,11 +41,6 @@ export const RestaurantScreen = () => (
         { name: 7 },
         { name: 8 },
         { name: 9 },
-        { name: 10 },
-        { name: 11 },
-        { name: 12 },
-        { name: 13 },
-        { name: 14 },
       ]}
       renderItem={() => (
         <Spacer position="bottom" size="large">
