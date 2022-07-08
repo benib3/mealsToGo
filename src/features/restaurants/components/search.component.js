@@ -18,7 +18,7 @@ export const Search = () => {
   return (
     <SearchContainer>
       <Searchbar
-        placeholder="Search for a location"
+        placeholder="Search for a location..."
         value={searchKeyword}
         onSubmitEditing={() => {
           search(searchKeyword);
