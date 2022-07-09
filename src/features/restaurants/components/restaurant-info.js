@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React from "react";
 import { Text } from "react-native";
-import styled from "styled-components";
+
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 import { StyleSheet, View, SafeAreaView, Platform, Image } from "react-native";
 import { Spacer } from "../../../main-components/spacer";
-import { Card } from "react-native-paper";
+
 import { SvgXml } from "react-native-svg";
 
 import {
