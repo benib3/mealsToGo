@@ -26,8 +26,8 @@ const MyText = styled.Text`
   font-family: ${fonts.heading};
 `;
 const isAndroid = Platform.OS === "android";
-export const CompactRestaurantInfo = ({ restaurant }) => {
-  const Image = isAndroid ? CompactWebview : CompactImage;
+export const CompactRestaurantInfo = ({ restaurant, isMap }) => {
+  const Image = isAndroid && isMap ? CompactWebview : CompactImage;
 
   return (
     <BoxView>
