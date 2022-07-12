@@ -1,11 +1,12 @@
 /* eslint-disable prettier/prettier */
 import { Ionicons } from "@expo/vector-icons";
-import * as React from "react";
+import React, { useContext } from "react";
 import { Text } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { SafeArea } from "../../main-components/safe-area";
 import { RestaurantsNavigator } from "./restaurants.navigator";
+
 import { MapScreen } from "../../features/map/screens/map.screens";
 const Tab = createBottomTabNavigator();
 
@@ -30,20 +31,18 @@ const createScreenOptions = ({ route }) => {
   };
 };
 
-export const Navigation = () => {
+export const AppNavigator = () => {
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={createScreenOptions}
-        tabBarOptions={{
-          activeTintColor: "tomato",
-          inactiveTintColor: "gray",
-        }}
-      >
-        <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-        <Tab.Screen name="Map" component={MapScreen} />
-        <Tab.Screen name="Settings" component={Settings} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <Tab.Navigator
+      screenOptions={createScreenOptions}
+      tabBarOptions={{
+        activeTintColor: "tomato",
+        inactiveTintColor: "gray",
+      }}
+    >
+      <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+      <Tab.Screen name="Map" component={MapScreen} />
+      <Tab.Screen name="Settings" component={Settings} />
+    </Tab.Navigator>
   );
 };
