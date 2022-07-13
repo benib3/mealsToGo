@@ -1,10 +1,14 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, createContext } from "react";
-import * as fb from "firebase/app";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
+import * as firebase from "firebase/app";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+import { startFirebase } from "../firebase";
 import { loginRequest } from "./authentication.service";
-
+startFirebase();
 export const AuthenticationContext = createContext();
 const auth = getAuth();
 export const AuthenticationContextProvider = ({ children }) => {
@@ -26,7 +30,21 @@ export const AuthenticationContextProvider = ({ children }) => {
         console.log(e);
       });
   };
-
+  const onRegister = (email, password, repeatedPassword) => {
+    if (password !== repeatedPassword) {
+      setError("Error: Passwords do not match");
+      return;
+    }
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((u) => {
+        setUser(u);
+        setIsLoading(false);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e.toString());
+      });
+  };
   return (
     <AuthenticationContext.Provider
       value={{
@@ -35,6 +53,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         isLoading,
         error,
         onLogin,
+        onRegister,
       }}
     >
       {children}
