@@ -5,6 +5,7 @@ import {
   getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { startFirebase } from "../firebase";
 import { loginRequest } from "./authentication.service";
@@ -15,8 +16,14 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-
-  console.log(auth);
+  auth.onAuthStateChanged((usr) => {
+    if (usr) {
+      setUser(usr);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+  });
   const onLogin = (email, password) => {
     setIsLoading(true);
     loginRequest(auth, email, password)
@@ -31,10 +38,17 @@ export const AuthenticationContextProvider = ({ children }) => {
       });
   };
   const onRegister = (email, password, repeatedPassword) => {
+    setIsLoading(true);
     if (password !== repeatedPassword) {
       setError("Error: Passwords do not match");
       return;
     }
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if (reg.test(email) === false) {
+      setError("Error:Email is incorrect.");
+      return;
+    }
+
     createUserWithEmailAndPassword(auth, email, password)
       .then((u) => {
         setUser(u);
@@ -45,6 +59,12 @@ export const AuthenticationContextProvider = ({ children }) => {
         setError(e.toString());
       });
   };
+  const onLogout = () => {
+    auth.signOut().then(() => {
+      setUser(null);
+      setError(null);
+    });
+  };
   return (
     <AuthenticationContext.Provider
       value={{
@@ -54,6 +74,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         error,
         onLogin,
         onRegister,
+        onLogout,
       }}
     >
       {children}

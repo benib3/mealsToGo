@@ -10,9 +10,7 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-import { RestaurantsContextProvider } from "./src/services/restaurants.context";
-import { LocationContextProvider } from "./src/services/location/location.context";
-import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
+
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
 import * as firebase from "firebase/app";
@@ -38,16 +36,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         {/* Firebase data */}
         <AuthenticationContextProvider>
-          {/* Favourites local data of restaurants*/}
-          <FavouritesContextProvider>
-            {/* Location local mock data of restaurants*/}
-            <LocationContextProvider>
-              {/* Restaurants local mock data */}
-              <RestaurantsContextProvider>
-                <Navigation />
-              </RestaurantsContextProvider>
-            </LocationContextProvider>
-          </FavouritesContextProvider>
+          <Navigation />
         </AuthenticationContextProvider>
       </ThemeProvider>
     </>
