@@ -6,12 +6,13 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { loginRequest } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
-
+const auth = getAuth();
 export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
-  const auth = getAuth();
+
+  console.log(auth);
   const onLogin = (email, password) => {
     setIsLoading(true);
     loginRequest(auth, email, password)
@@ -21,13 +22,15 @@ export const AuthenticationContextProvider = ({ children }) => {
       })
       .catch((e) => {
         setIsLoading(false);
-        setError(e);
+        setError(e.toString());
+        console.log(e);
       });
   };
 
   return (
     <AuthenticationContext.Provider
       value={{
+        isAuthenticated: !!user,
         user,
         isLoading,
         error,

@@ -1,6 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
 import React, { useState, useEffect } from "react";
-import { initializeApp } from "firebase/app";
 
 import { ThemeProvider } from "styled-components";
 import { theme } from "./src/infrastucture/theme";
@@ -16,6 +15,7 @@ import { LocationContextProvider } from "./src/services/location/location.contex
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
+import * as firebase from "firebase/app";
 const firebaseConfig = {
   apiKey: "AIzaSyD-vu5NP-bFvhdVf9AEP2_4aoOTXJI75QY",
   authDomain: "mealstogo-1ed9e.firebaseapp.com",
@@ -25,7 +25,7 @@ const firebaseConfig = {
   appId: "1:598932158470:web:f3f7ecd761189f85d4eb87",
 };
 
-initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
 export default function App() {
   const [oswaldLoaded] = useOswald({

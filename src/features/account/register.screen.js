@@ -1,14 +1,11 @@
 /* eslint-disable prettier/prettier */
 import React from "react";
-import {
-  AccountBackground,
-  AccountCover,
-} from "../account/components/account.style";
-
+import { TextInput } from "react-native";
+import { AccountBackground, AccountCover } from "./components/account.style";
 export const RegisterScreen = () => {
   return (
     <AccountBackground>
-      <AccountCover />
+      <AccountCover></AccountCover>
     </AccountBackground>
   );
 };
