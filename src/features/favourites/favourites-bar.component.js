@@ -4,6 +4,7 @@ import styled from "styled-components/native";
 import { ScrollView, TouchableOpacity, Text } from "react-native";
 import { Spacer } from "../../main-components/spacer";
 import { CompactRestaurantInfo } from "../map/components/compact-restaurant-info";
+
 const FavWrapper = styled.View`
   padding: 10px;
   margin-left: 5px;
