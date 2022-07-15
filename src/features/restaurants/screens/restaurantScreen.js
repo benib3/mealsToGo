@@ -1,12 +1,13 @@
 /* eslint-disable prettier/prettier */
 import React, { useContext, useState } from "react";
 import { FlatList, TouchableOpacity } from "react-native";
-import { Searchbar, ActivityIndicator } from "react-native-paper";
+import { ActivityIndicator } from "react-native-paper";
 import { RestaurantInfo } from "../components/restaurant-info";
 import { Search } from "../components/search.component";
 import styled from "styled-components";
 import { Spacer } from "../../../main-components/spacer";
 import { SafeArea } from "../../../main-components/safe-area";
+import { FadeInView } from "../../../main-components/fade.animation";
 
 import { FavouritesBar } from "../../favourites/favourites-bar.component";
 import { RestaurantsContext } from "../../../services/restaurants.context";
@@ -48,6 +49,7 @@ export const RestaurantScreen = ({ navigation }) => {
           onNavigate={navigation.navigate}
         />
       )}
+
       <RestaurantList
         data={restaurants}
         renderItem={({ item }) => {
@@ -60,7 +62,9 @@ export const RestaurantScreen = ({ navigation }) => {
               }
             >
               <Spacer position="bottom" size="large">
-                <RestaurantInfo restaurant={item} />
+                <FadeInView>
+                  <RestaurantInfo restaurant={item} />
+                </FadeInView>
               </Spacer>
             </TouchableOpacity>
           );
