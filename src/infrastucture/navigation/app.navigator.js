@@ -1,15 +1,13 @@
 /* eslint-disable prettier/prettier */
 import { Ionicons } from "@expo/vector-icons";
-import React, { useContext } from "react";
-import { Text, Button } from "react-native";
+import React from "react";
 
+import { colors } from "../theme/colors";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { SafeArea } from "../../main-components/safe-area";
 
 import { RestaurantsContextProvider } from "../../services/restaurants.context";
 import { LocationContextProvider } from "../../services/location/location.context";
 import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
-import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 import { RestaurantsNavigator } from "./restaurants.navigator";
 import { MapScreen } from "../../features/map/screens/map.screens";
@@ -40,7 +38,7 @@ export const AppNavigator = () => {
           <Tab.Navigator
             screenOptions={createScreenOptions}
             tabBarOptions={{
-              activeTintColor: "tomato",
+              activeTintColor: colors.brand.primary,
               inactiveTintColor: "gray",
             }}
           >

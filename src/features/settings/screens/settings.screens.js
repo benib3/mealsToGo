@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
 import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
-import { List, Avatar } from "react-native-paper";
+import { List, Avatar, Divider } from "react-native-paper";
 import { SafeArea } from "../../../main-components/safe-area";
 import { Text } from "../../../main-components/text";
 import { Spacer } from "../../../main-components/spacer";
+import { colors } from "../../../infrastucture/theme/colors";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { TouchableOpacity } from "react-native";
 
@@ -13,6 +14,8 @@ import { useFocusEffect } from "@react-navigation/native";
 
 const SettingsItem = styled(List.Item)`
   padding: ${(props) => props.theme.space[3]};
+  background-color: rgba(225, 225, 225, 0.2);
+  border-style: solid;
 `;
 const AvatarContainer = styled.View`
   align-items: center;
@@ -38,7 +41,11 @@ export const SettingsScreen = ({ navigation }) => {
       <AvatarContainer>
         <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
           {!photo && (
-            <Avatar.Icon size={160} icon="human" backgroundColor="#2182BD" />
+            <Avatar.Icon
+              size={160}
+              icon="human"
+              backgroundColor={colors.brand.primary}
+            />
           )}
           {photo && (
             <Avatar.Image
@@ -54,11 +61,14 @@ export const SettingsScreen = ({ navigation }) => {
       </AvatarContainer>
 
       <List.Section>
+        <Spacer />
         <SettingsItem
           title="Favourites"
           left={(props) => <List.Icon {...props} color="black" icon="heart" />}
           onPress={() => navigation.navigate("Favourites")}
         />
+        <Spacer />
+        <Divider />
         <SettingsItem
           title="Logout"
           left={(props) => <List.Icon {...props} color="black" icon="door" />}

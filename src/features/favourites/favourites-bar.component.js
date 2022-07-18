@@ -1,13 +1,15 @@
 /* eslint-disable prettier/prettier */
 import React from "react";
 import styled from "styled-components/native";
+import { Card } from "react-native-paper";
 import { ScrollView, TouchableOpacity, Text } from "react-native";
 import { Spacer } from "../../main-components/spacer";
 import { CompactRestaurantInfo } from "../map/components/compact-restaurant-info";
 
-const FavWrapper = styled.View`
+const FavWrapper = styled(Card)`
   padding: 10px;
-  margin-left: 5px;
+  border-radius: 15px;
+  z-index: 999;
 `;
 export const FavouritesBar = ({ favourites, onNavigate }) => {
   if (!favourites.length) {

@@ -10,6 +10,7 @@ import {
   Title,
 } from "../account/components/account.style";
 import LottieView from "lottie-react-native";
+
 export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>

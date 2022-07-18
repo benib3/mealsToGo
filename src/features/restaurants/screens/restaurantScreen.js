@@ -25,7 +25,7 @@ const LoadingContainer = styled.View`
   left: 50%;
 `;
 const Loading = styled(ActivityIndicator)`
-  marginleft: -25;
+  margin-left: -25;
 `;
 
 export const RestaurantScreen = ({ navigation }) => {
@@ -36,7 +36,7 @@ export const RestaurantScreen = ({ navigation }) => {
     <SafeArea>
       {isLoading && (
         <LoadingContainer>
-          <Loading size={50} animating={true} color={"gray"} />
+          <Loading size={50} animating={true} color={"tomato"} />
         </LoadingContainer>
       )}
       <Search

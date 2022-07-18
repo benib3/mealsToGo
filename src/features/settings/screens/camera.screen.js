@@ -2,14 +2,18 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import styled from "styled-components";
 import { Avatar } from "react-native-paper";
-import { TouchableOpacity, View, StyleSheet } from "react-native";
+import { TouchableOpacity, View, Dimensions } from "react-native";
 import { Camera, CameraType } from "expo-camera";
-import { SafeArea } from "../../../main-components/safe-area";
+
 import { Text } from "../../../main-components/text";
-import { Spacer } from "../../../main-components/spacer";
+import { colors } from "../../../infrastucture/theme/colors";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+const windowWidth = Dimensions.get("window").width;
+console.log(windowWidth);
+const windowHeight = Dimensions.get("window").height;
+console.log(windowHeight);
 const ProfileCamera = styled(Camera)`
   width: 100%;
   height: 100%;
@@ -20,8 +24,8 @@ const CameraContainer = styled.View`
 `;
 const CameraIcon = styled(Avatar.Icon)`
   position: absolute;
-  top: 515px;
-  left: 160px;
+  top: ${windowHeight * 0.7}px;
+  left: ${windowWidth * 0.4}px;
 `;
 
 export const CameraScreen = ({ navigation }) => {
@@ -55,7 +59,11 @@ export const CameraScreen = ({ navigation }) => {
     <ProfileCamera ref={cameraRef} type={CameraType.front}>
       <CameraContainer>
         <TouchableOpacity onPress={takePicture}>
-          <CameraIcon size={100} icon="camera" />
+          <CameraIcon
+            size={100}
+            icon="camera"
+            backgroundColor={colors.brand.primary}
+          />
         </TouchableOpacity>
       </CameraContainer>
     </ProfileCamera>

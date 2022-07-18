@@ -31,7 +31,7 @@ export const LoginContainer = styled.View`
 `;
 
 export const AuthButton = styled(Button).attrs({
-  buttonColor: colors.brand.primary,
+  color: colors.brand.primary,
 })`
   padding: ${(props) => props.theme.space[3]};
 `;
